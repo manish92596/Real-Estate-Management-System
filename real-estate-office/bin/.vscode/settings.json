@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\real-estate-office\\com.mysql.jdbc_5.1.5.jar",
+        "d:\\real-estate-office\\mysql-connector-java-8.0.11.jar"
+    ]
+}

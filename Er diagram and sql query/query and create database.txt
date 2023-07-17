@@ -1,0 +1,289 @@
+create table owns(P_id varchar(50),O_id int,primary key (P_id,O_id),FOREIGN KEY (P_id) REFERENCES property(P_id) ON DELETE CASCADE,FOREIGN KEY (O_id) REFERENCES owner(O_id) ON DELETE CASCADE);
+Query OK, 0 rows affected (0.04 sec)
+
+create table manages(P_id varchar(50),A_id int,primary key (P_id,A_id),FOREIGN KEY (P_id) REFERENCES property(P_id) ON DELETE CASCADE,FOREIGN KEY (A_id) REFERENCES agent(A_id) ON DELETE CASCADE);
+Query OK, 0 rows affected (0.04 sec)
+
+create table transaction(P_id varchar(50) ,T_id int,SR_price int ,SR_date date,primary key (T_id));
+
+create table T_details(T_id int,A_id int,primary key (T_id,A_id),FOREIGN KEY (T_id) REFERENCES transaction(T_id) ON DELETE CASCADE,FOREIGN KEY (A_id) REFERENCES agent(A_id) ON DELETE CASCADE);
+Query OK, 0 rows affected (0.05 sec)
+
+
+create table deals(B_id int,A_id int,primary key (B_id,A_id),FOREIGN KEY (B_id) REFERENCES buyer(B_id) ON DELETE CASCADE,FOREIGN KEY (A_id) REFERENCES agent(A_id) ON DELETE CASCADE);
+
+
+create table works_in(Off_id int,A_id int,primary key (Off_id,A_id),FOREIGN KEY (Off_id) REFERENCES office(Off_id) ON DELETE CASCADE,FOREIGN KEY (A_id) REFERENCES agent(A_id) ON DELETE CASCADE);
+Query OK, 0 rows affected (0.04 sec)
+
+
+ create table DeleteAgent(DA_id int,DA_name varchar(255),DA_contact_no BIGINT,DA_email varchar(255) UNIQUE,DA_address varchar(255),DA_username varchar(255) UNIQUE,DA_password varchar(255),primary key(DA_id));
+
+
+create table Office(off_id int,off_name varchar(255),off_email varchar(255),off_contact BIGINT,off_address varchar(255),primary key(off_id));
+
+
+create table Agent(A_id int,A_name varchar(255),A_contact_no BIGINT,A_email varchar(255) UNIQUE,A_address varchar(255),A_username varchar(255) UNIQUE,A_password varchar(255),primary key(A_id));
+
+
+create table Buyer(B_id int,B_name varchar(255),B_email varchar(255),B_contact_no BIGINT,B_address varchar(255),B_username varchar(255),B_password varchar(255),primary key(B_id));
+Query OK, 0 rows affected (0.02 sec)
+
+create table property(P_id varchar(255),flat_type varchar(255),P_name varchar(255),P_type varchar(255),sell_rent varchar(255),P_area varchar(255),Y_O_C int,S_price_R_price int,P_address varchar(255),Status varchar(255),primary key(P_id,flat_type));
+
+create table Owner(O_id int,O_name varchar(255),O_contact_no BIGINT,O_email varchar(255),O_addres varchar(255),primary key(O_id));
+
+mysql> create table Contact(
+    ->      OWE_id int,
+    ->      AGEN_id int,
+    ->      primary key(OWE_id,AGEN_id),
+    ->      foreign key (OWE_id) references Owner(O_id),
+    ->      foreign key (AGEN_id) references Agent(A_id));
+Query OK, 0 rows affected (0.04 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+OFFICE------------
+INSERT INTO office (off_id, off_name, off_email, off_contact, off_address) VALUES (111, 'DEF Enterprises', 'def@example.com', 4567890123, '234 Marg Nagar, Guwahati, Assam');
+Query OK, 1 row affected (0.01 sec)
+
+
+
+AGENT-------------
+INSERT INTO Agent (A_id, A_name, A_contact_no, A_email, A_address, A_username, A_password) VALUES
+    (19, 'Aarav Gupta', 1234567890, 'a.gupta@email.com', 'G. S. Road, Guwahati, Kamrup Metropolitan District, Assam - 781006', 'aaravg', 'password1'),
+    (29, 'Riya Singh', 2345678901, 'r.singh@email.com', '  Dr. R. P. Road, , Guwahati, Kamrup District, Assam - 781008', 'riyasingh', 'password2'),
+    (39, 'Arnav Patel', 3456789012, 'a.patel@email.com', 'Azara Road, Guwahati, Kamrup Metropolitan District, Assam - 781005','arnavpatel', 'password3'),
+    (49, 'Aanya Sharma', 4567890123, 'a.sharma@email.com', ' NH-27 Road,Guwahati, Nagaon District, Assam - 782001', 'aanyasharma', 'password4'),
+    (59, 'Rajesh Khanna', 5678901234, 'r.khanna@email.com', ' Near Police Reserve Road, Guwahati, Jorhat District, Assam - 785001', 'rkhanna', 'password5'),
+    (69, 'Kavita Singhania', 6789012345, 'kavita@email.com', ' Beltola Road, Guwahati, Kamrup Metropolitan District, Assam - 781028', 'kavitas', 'password6'),
+    (79, 'Amit Kumar', 7890123456, 'a.kumar@email.com', 'MG Road, Guwahati, Dima Hasao District, Assam - 788819', 'amitk', 'password7'),
+    (89, 'Ishaan Gupta', 8901234567, 'i.gupta@email.com', 'Beltola Bazar Road, Guwahati, Kamrup Metropolitan District, Assam - 781028','ishaangupta', 'password8'),
+    (99, 'Neha Shah', 9012345678, 'neha.shah@email.com', ' PWD Road, Guwahati, Dhubri District, Assam - 783301', 'nehashah', 'password9'),
+    (109, 'Rohan Sharma', 1234509876, 'rohan.sharma@email.com', ' Opposite Bora Service Petrol Pump Road, Guwahati, Nagaon District, Assam - 782446', 'rohans', 'password10'),
+    (119, 'Priya Patel', 2345609876, 'priya.patel@email.com', ' Dr. B. Baruah Road,  Guwahati, Kamrup Metropolitan District, Assam - 781007', 'priyap', 'password11'),
+    (129, 'Aryan Singh', 3456709876, 'aryan.singh@email.com', ' GNB Road, Guwahati, Cachar District, Assam - 788001', 'aryans', 'password12'),
+    (139, 'Sneha Sharma', 4567809876, 'sneha.sharma@email.com', ' Sivasagar Road, Guwahati, Kamrup Metropolitan District, Assam - 781038', 'snehash', 'password13'),
+    (149, 'Nikhil Gupta', 5678909876, 'nikhil.gupta@email.com', ' Sonitpur Road, Guwahati, Sonitpur District, Assam - 784001', 'nikhilg', 'password14'),
+    (159, 'Anjali Shah', 6789019876, 'anjali.shah@email.com', ' AT Road, Guwahati, Sivasagar District, Assam - 785640', 'anjalish', 'password15'),
+    (169, 'Vikas Patel', 7890129876, 'vikas.patel@email.com', ' Kacharipatty Road, Guwahati, Tinsukia District, Assam - 786125', 'vikasp', 'password16'),
+    (179, 'Pranav Desai', 8901230987, 'pranav.desai@email.com', 'Pan Bazaar Post Office Road, Guwahati, Kamrup Metropolitan District, Assam - 781001', 'pranavd', 'password18'),
+    (189, 'Rohit Malhotra', 9012340987, 'rohit.malhotra@email.com', ' Fancy Bazaar Road, Guwahati, Kamrup Metropolitan District, Assam - 781005', 'rohitm', 'password19'),
+    (199, 'Kritika Gupta', 1234567890, 'kritika.gupta@email.com', ' Near Jama Masjid Road, Guwahati , Goalpara District, Assam - 783385', 'kritikag', 'password20'),
+    (209, 'Akshay Patel', 2345678901, 'akshay.patel@email.com', ' AT Chapaguri Road, Guwahati, Darrang District, Assam - 784125', 'akshayp', 'password21'),
+    (219, 'Priyanka Singh', 3456789012, 'priyanka.singh@email.com', ' Mirza Road, Guwahati, Kamrup Metropolitan District, Assam - 781005', 'priyankas', 'password22');
+Query OK, 21 rows affected (0.01 sec)
+Records: 21  Duplicates: 0  Warnings: 0
+
+
+
+WORKS_IN------------------
+INSERT INTO works_in (off_id, A_id) VALUES
+    (111,19),
+    (111,29),
+    (111,39),
+    (111,49),
+    (111,59),
+    (111,69),
+    (111,79),
+    (111,89),
+    (111,99),
+    (111,109),
+    (111,119),
+    (111,129),
+    (111,139),
+    (111,149),
+    (111,159),
+    (111,169),
+    (111,179),
+    (111,189),
+    (111,199),
+    (111,209),
+    (111,219);
+
+
+
+BUYER---------------
+INSERT INTO Buyer (B_id, B_name, B_email, B_contact_no, B_address, B_username, B_password) VALUES
+    (1019, 'Sara Patel', 'sara.patel@example.com', 1234567890, '10101 Maple St', 'sarapatel', 'password1'),
+    (1029, 'Karan Shah', 'karan.shah@example.com', 2345678901, '10202 Cedar St', 'karanshah', 'password2'),
+    (1039, 'Riya Singh', 'riya.singh@example.com', 3456789012, '10303 Elm St', 'riyasingh', 'password3'),
+    (1049, 'Aryan Gupta', 'aryan.gupta@example.com', 4567890123, '10404 Main St', 'aryangupta', 'password4'),
+    (1059, 'Neha Desai', 'neha.desai@example.com', 5678901234, '10505 Oak St', 'nehadesai', 'password5'),
+    (1069, 'Vikram Patel', 'vikram.patel@example.com', 6789012345, '10606 Pine St', 'vikrampatel', 'password6'),
+    (1079, 'Ishani Sharma', 'ishani.sharma@example.com', 7890123456, '10707 Maple St', 'ishanisharma', 'password7'),
+    (1089, 'Amit Mehta', 'amit.mehta@example.com', 8901234567, '10808 Cedar St', 'amitmehta', 'password8'),
+    (1099, 'Anjali Singh', 'anjali.singh@example.com', 9012345678, '10909 Elm St', 'anjalisingh', 'password9'),
+    (1109, 'Rohan Shah', 'rohan.shah@example.com', 1234509876, '11010 Main St', 'rohanshah', 'password10'),
+    (1119, 'Ishita Gupta', 'ishita.gupta@example.com', 2345610987, '11111 Oak St', 'ishitagupta', 'password11'),
+    (1129, 'Manoj Desai', 'manoj.desai@example.com', 3456721098, '11212 Pine St', 'manojdesai', 'password12'),
+    (1139, 'Aarav Patel', 'aarav.patel@example.com', 4567832109, '11313 Maple St', 'aaravpatel', 'password13'),
+    (1149, 'Ishaan Sharma', 'ishaan.sharma@example.com', 5678943210, '11414 Cedar St', 'ishaansharma', 'password14'),
+    (1159, 'Kavya Singh', 'kavya.singh@example.com', 6789054321, '11515 Elm St', 'kavyasingh', 'password15'),
+    (1169, 'Anika Shah', 'anika.shah@example.com', 7890165432, '11616 Main St', 'anikashah', 'password16'),
+    (1179, 'Aryan Gupta', 'aryan.gupta@example.com', 8901276543, '11717 Oak St', 'aryangupta2', 'password17'),
+    (1189, 'Karan Mehta', 'karan.mehta@example.com', 9012387654, '11818 Pine St', 'karanmehta', 'password18');
+Query OK, 18 rows affected (0.01 sec)
+Records: 18  Duplicates: 0  Warnings: 0
+
+
+OWNS---------------
+insert into owns (p_id,o_id)
+    values
+    ('101A',105 ),
+    ('101B',115),
+    ('102B',122 ),
+    ('102C',125),
+    ('103A',135),
+    ('103B',145),
+    ('104B',155),
+    ('104C',165),
+    ('105A',175),
+    ('105B',185),
+    ('106B',195),
+    ('106C',205),
+    ('107A',215),
+    ('107B', 222),
+    ('108B', 225),
+    ('108C', 235),
+    ('109B', 245),
+    ('110A', 322),
+    ('111C', 422),
+    ('112B', 522),
+    ('113A', 622),
+    ('114D', 722),
+    ('115C', 822),
+    ('116B', 922);
+Query OK, 24 rows affected (0.00 sec)
+Records: 24  Duplicates: 0  Warnings: 0
+
+
+
+PROPERTY----------------
+INSERT INTO property (P_id, flat_type, P_name, P_type, sell_rent, P_area, Y_O_C, S_price_R_price, P_address,Status)
+    VALUES
+    ('101A', '1BHK', 'Sunrise Apartments', 'Apartment', 'Sell', '500 sq ft', 2014, 5000000, 'Nabin Nagar Road, Gorchuk, Guwahati, Assam','available'),
+    ('101B', '2BHK', 'Sunrise Apartments', 'Apartment', 'Rent', '800 sq ft', 2014, 25000, 'Nabin Nagar Road, Gorchuk, Guwahati, Assam','available'),
+    ('102B', '2BHK', 'Green View Towers', 'Apartment', 'Sell', '1000 sq ft', 2018, 7000000, 'Beltola Bazaar Road, Beltola, Guwahati, Assam','available'),
+    ('102C', '3BHK', 'Green View Towers', 'Apartment', 'Rent', '1200 sq ft', 2018, 35000, 'Beltola Bazaar Road, Beltola, Guwahati, Assam','available'),
+    ('103A', '1BHK', 'Paradise Heights', 'Apartment', 'Sell', '550 sq ft', 2019, 4500000, 'Paltan Bazaar Road, Paltan Bazaar, Guwahati, Assam','available'),
+    ('103B', '2BHK', 'Paradise Heights', 'Apartment', 'Rent', '850 sq ft', 2019, 28000, 'Paltan Bazaar Road, Paltan Bazaar, Guwahati, Assam','available'),
+    ('104B', '2BHK', 'Royal Residency', 'Apartment', 'Sell', '950 sq ft', 2000, 6500000, 'Six Mile Road, Six Mile, Guwahati, Assam','available'),
+    ('104C', '3BHK', 'Royal Residency', 'Apartment', 'Rent', '1250 sq ft', 2000, 40000, 'Six Mile Road, Six Mile, Lachit Nagar, Guwahati, Assam','available'),
+    ('105A', '1BHK', 'Heavenly Homes', 'Apartment', 'Sell', '500 sq ft', 2022, 5500000, 'Hatigaon Main Road, Hatigaon, Guwahati, Assam','available'),
+    ('105B', '2BHK', 'Heavenly Homes', 'Apartment', 'Rent', '800 sq ft', 2022, 30000, 'Hatigaon Main Road, Hatigaon, Guwahati, Assam','available'),
+    ('106B', '2BHK', 'Green Acres', 'Home', 'Sell', '1500 sq ft', 2011, 12000000, 'Maligaon Flyover Road, Maligaon, Guwahati, Assam','available'),
+    ('106C', '3BHK', 'Green Acres', 'Home', 'Rent', '2000 sq ft', 2011, 50000, 'Maligaon Flyover Road, Maligaon, Guwahati, Assam','available'),
+    ('107A', '1BHK', 'Garden Residency', 'Apartment', 'Sell', '550 sq ft', 2008 , 5000000, 'Panbazar Flyover Road, Panbazar, Guwahati, Assam','available'),
+    ('107B', '2BHK', 'Garden Residency', 'Apartment', 'Rent', '850 sq ft', 2008, 25000, 'Panbazar Flyover Road, Panbazar, Guwahati, Assam','available'),
+    ('108B', '2BHK', 'Palm View', 'Apartment', 'Sell', '900 sq ft', 2005, 6000000, 'GNB Road, Silpukhuri, Guwahati, Assam','available'),
+    ('108C', '3BHK', 'Palm View', 'Apartment', 'Rent', '1200 sq ft', 2005, 35000, 'GNB Road, Silpukhuri, Guwahati, Assam','available'),
+    ('109B', '2BHK', 'Blue Sky Apartments', 'Apartment', 'Sell', '1200 sqft', 2017, 9000000, 'Kahilipara Road, Kahilipara, Guwahati, Assam','available'),
+    ('110A', '1BHK', 'Green Garden Residency', 'Apartment', 'Rent', '600 sqft', 2017, 15000, 'Rehabari Flyover Road, Rehabari, Guwahati, Assam','available'),
+    ('111C', '3BHK', 'Sunrise Heights', 'Apartment', 'Sell', '1800 sqft', 2016, 25000000, 'Christian Basti Flyover Road, Christian Basti, Guwahati, Assam','available'),
+    ('112B', '2BHK', 'Royal Palms', 'Apartment', 'Rent', '1200 sqft', 2023, 20000, 'Beltola Tiniali Road, Beltola, Guwahati, Assam','available'),
+    ('113A', '1BHK', 'Meadow View Apartments', 'Apartment', 'Rent', '800 sqft',2018, 12000, 'GS Road, Bhangagarh, Guwahati, Assam','available'),
+    ('114D', '4BHK', 'Home Grande', 'Home', 'Sell', '2500 sqft', 2001, 50000000, 'Six Mile Flyover Road, Six Mile, Guwahati, Assam','available'),
+    ('115C', '3BHK', 'Emerald Residency', 'Apartment', 'Rent', '1800 sqft',2012, 30000, 'Chandmari Flyover Road, Chandmari, Guwahati, Assam','available'),
+    ('116B', '2BHK', 'Golden Homes', 'Apartment', 'Sell', '1000 sqft', 2015, 7000000, 'RG Baruah Road, Ganeshguri, Guwahati, Assam','available');
+Query OK, 26 rows affected (0.01 sec)
+Records: 26  Duplicates: 0  Warnings: 0
+
+
+OWENER-----------------------
+INSERT INTO owner (O_id, O_name, O_contact_no, O_email, O_addres) VALUES
+    (122, 'Aarav Patel', 7890123456, 'aarav.patel@example.com', 'Main Road, Ganeshguri, Guwahati, Assam, 781001'),
+    (222, 'Ishaan Sharma', 8901234567, 'ishaan.sharma@example.com', 'Park Road, Kamrup Metropolitan, Guwahati, Assam, 781002'),
+    (322, 'Kavya Singh', 9012345678, 'kavya.singh@example.com', 'Hill View Lane, Kamrup Rural, Guwahati, Assam, 781003'),
+    (422, 'Anika Shah', 6375560892, 'anika.shah@example.com', 'Garden Street, Sonapur, Guwahati, Assam, 781004'),
+    (522, 'Aryan Gupta', 9921567811, 'aryan.gupta@example.com', 'Beach Road, Dispur, Guwahati, Assam, 781005'),
+    (622, 'Karan Mehta', 7456789012, 'karan.mehta@example.com', 'Market Lane, North Guwahati, Guwahati, Assam, 781006'),
+    (722, 'Ananya Desai', 9567895512, 'ananya.desai@example.com', 'River View Road, Palashbari, Guwahati, Assam, 781007'),
+    (822, 'Sahil Patel', 7678901234, 'sahil.patel@example.com', 'Bridge Street, Boko, Guwahati, Assam, 781008'),
+    (922, 'Neha Singh', 6789012345, 'neha.singh@example.com', 'Forest Lane, Chaygaon, Guwahati, Assam, 781009'),
+    (105, 'Rohan Shah', 7890123456, 'rohan.shah@example.com', 'Airport Road, Azara, Guwahati, Assam, 781010'),
+    (115, 'Ishani Gupta', 8901234567, 'ishani.gupta@example.com', 'Lakeside Lane, Nalbari, Guwahati, Assam, 781011'),
+    (125, 'Amit Mehta', 9012345678, 'amit.mehta@example.com', 'Industrial Road, Rangia, Guwahati, Assam, 781012'),
+    (135, 'Anjali Desai', 8954509876, 'anjali.desai@example.com', 'Mountain View Street, Barpeta, Guwahati, Assam, 781013'),
+    (145, 'Siddharth Patel', 8945610987, 'siddharth.patel@example.com', 'Farm Road, Hajo, Guwahati, Assam, 781014'),
+    (155, 'Riya Singh', 9656721098, 'riya.singh@example.com', 'School Lane, Mangaldoi, Guwahati, Assam, 781015'),
+    (165, 'Arjun Shah', 7487832109, 'arjun.shah@example.com', 'Coastal Road, Goalpara, Guwahati, Assam, 781016'),
+    (175, 'Priya Gupta', 8678943210, 'priya.gupta@example.com', 'Canal Street, Kamalpur, Guwahati, Assam, 781017'),
+    (185, 'Manoj Mehta', 6789054321, 'manoj.mehta@example.com', 'Riverfront Road, Abhayapuri, Guwahati, Assam, 781018'),
+    (195, 'Aaradhya Desai', 7890165432, 'aaradhya.desai@example.com', 'Railway Lane, Dudhnoi, Guwahati, Assam, 781019'),
+    (205, 'Vivek Patel', 8901276543, 'vivek.patel@example.com', 'Valley View Street, Diphu, Guwahati, Assam, 781020'),
+    (215, 'Ishita Singh', 9012387654, 'ishita.singh@example.com', 'Heritage Lane, Haflong, Guwahati, Assam, 781021'),
+    (225, 'Rahul Shah', 6578498765, 'rahul.shah@example.com', 'Waterfall Road, Morigaon, Guwahati, Assam, 781022'),
+    (235, 'Nisha Gupta', 9752709876, 'nisha.gupta@example.com', 'Garden View Street, Karimganj, Guwahati, Assam, 781023'),
+    (245, 'Kunal Mehta', 6612820987, 'kunal.mehta@example.com', 'City Road, Tezpur, Guwahati, Assam, 781024');
+
+
+
+insert into manages (p_id,a_id)
+    values
+    ('101A',19),
+    ('101B',29),
+    ('102B', 29),
+    ('102C',29),
+    ('103A',39),
+    ('103B',39),
+    ('104B',49),
+    ('104C',49),
+    ('105A',69),
+    ('105B',69),
+    ('106B',69),
+    ('106C',69),
+    ('107A',99),
+    ('107B',99),
+    ('108B',119),
+    ('108C',119),
+    ('109B',119),
+    ('110A',129),
+    ('111C',139),
+    ('112B',159),
+    ('113A',169),
+    ('114D',169),
+    ('115C',209),
+    ('116B',209);
+
+
+ 
+insert into Contact (owe_id,agen_id)
+    values
+    (105,19),
+    (115,29),
+    (122, 29),
+    (125,29),
+    (135,39),
+    (145,39),
+    (155,49),
+    (165,49),
+    (175,69),
+    (185,69),
+    (195,69),
+    (205,69),
+    (215,99),
+    (222,99),
+    (225,119),
+    (235,119),
+    (245,119),
+    (322,129),
+    (422,139),
+    (522,159),
+    (622,169),
+    (722,169),
+    (822,209),
+    (922,209);  
+
+
+

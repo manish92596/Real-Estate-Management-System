@@ -1,0 +1,35 @@
+
+mysql> create table owner(
+    -> O_id int,
+    -> O_name varchar(255),
+    -> O_contact_no int,
+    -> O_email varchar(255),
+    -> O_addres varchar(255),
+    -> primary key(O_id));
+Query OK, 0 rows affected (0.02 sec)
+
+
+
+mysql> create table property(P_id int,
+    -> flat_type varchar(255),
+    -> P_name varchar(255),
+    -> P_type varchar(255),
+    -> sell_rent varchar(255),
+    -> P_area varchar(255),
+    -> Y_O_C int,
+    -> S_price_R_price int,
+    -> P_address varchar(255),
+    -> primary key(P_id,flat_type));
+
+
+
+
+mysql> create table Agent(
+    -> A_id int,
+    -> A_name varchar(255),
+    -> A_contact_no int,
+    -> A_email varchar(255) UNIQUE,
+    -> A_address varchar(255),
+    -> A_username varchar(255) UNIQUE,
+    -> A_password varchar(255),
+    -> primary key(A_id));
