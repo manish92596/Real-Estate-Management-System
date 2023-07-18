@@ -50,7 +50,10 @@ https://github.com/manish92596/Real-Estate-Management-System/assets/98229122/b1c
 
 https://github.com/manish92596/Real-Estate-Management-System/assets/98229122/5185f791-0636-4fec-99b0-8de99352c2db
 
+</br>
 
+#  Tools & technologies used: 
+MySql, Java Swing, JDBC connector, CSS
 
 
 
